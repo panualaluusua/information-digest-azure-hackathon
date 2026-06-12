@@ -1,0 +1,38 @@
+# Microsoft Agent Framework (Reasoning Agents track)
+agent-framework-foundry>=1.0.0
+
+# Azure AI
+azure-ai-agents>=1.0.0
+azure-ai-projects>=1.0.0
+azure-identity>=1.15.0
+
+# MCP servers
+mcp>=1.2.0
+
+# Data fetching
+feedparser>=6.0.0
+requests>=2.31.0
+
+# YouTube — STUB interface ready for official YouTube Data API v3
+# To activate: obtain API key from https://console.cloud.google.com/
+# and set YOUTUBE_API_KEY in your .env
+# google-api-python-client>=2.0.0  # Uncomment when using official API
+
+# Structured outputs & validation
+pydantic>=2.0.0
+
+# Teams integration
+# No extra library needed — uses standard requests with webhook URL
+
+# GenAIOps & observability
+opentelemetry-sdk>=1.24.0
+opentelemetry-exporter-otlp>=1.24.0
+azure-monitor-opentelemetry>=1.6.0
+
+# Eval
+python-dotenv>=1.0.0
+
+# Testing
+pytest>=9.0.0
+pytest-asyncio>=1.4.0
+pytest-mock>=3.15.0

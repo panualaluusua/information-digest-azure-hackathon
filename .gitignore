@@ -1,0 +1,32 @@
+# Secrets
+.env
+.env.*
+
+# Python
+*.pyc
+__pycache__/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Azure
+.azure/
+
+# Data directories — keep folder structure but not contents
+inbox/*
+!inbox/.gitkeep
+silver_data/*
+!silver_data/.gitkeep
+gold_synthesis/*
+!gold_synthesis/.gitkeep
+video-handoff/*
+!video-handoff/.gitkeep
+
+# Generated at runtime
+sources.json
+eval/eval_report.json
+
+# Test cache
+.pytest_cache/

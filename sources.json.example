@@ -1,0 +1,10 @@
+{
+  "rss_feeds": [
+    "https://feeds.feedburner.com/oreilly/radar",
+    "https://azure.microsoft.com/en-us/blog/feed/"
+  ],
+  "youtube_channels": [],
+  "github_orgs": [
+    "microsoft"
+  ]
+}
