@@ -112,8 +112,9 @@ async def run_pipeline() -> None:
             silver_paths = await analyze_all_inbox()
             print(f"[orchestrator] Analyzed {len(silver_paths)} inbox files -> silver_data/")
 
-        # --- Stage 3: Digest synthesis ---
+        # --- Stage 3: Digest synthesis (Foundry IQ) ---
         with tracer.start_as_current_span("stage-3-gold"):
+            print("[reasoning] FOUNDRY_IQ indexing silver briefs into Foundry vector store for grounded synthesis")
             digest, gold_path = await synthesize()
             print(f"[orchestrator] Weekly digest written to {gold_path}")
 

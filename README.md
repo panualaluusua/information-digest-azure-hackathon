@@ -47,6 +47,32 @@ Microsoft Teams                (Optional) Adaptive Card notification
 
 This is intentionally described as Semantic ETL rather than a strict medallion architecture. The current file names still use `silver` and `gold` for the tested demo path, but the conceptual flow is `ingest -> normalize -> enrich -> rank -> synthesize -> publish`. See [docs/PIPELINE_SPEC.md](docs/PIPELINE_SPEC.md).
 
+## Microsoft IQ Integration — Foundry IQ
+
+This project integrates **Foundry IQ** as its intelligence layer, satisfying the hackathon's mandatory Microsoft IQ requirement.
+
+**What Foundry IQ provides here:** Agentic knowledge retrieval — the synthesis agent does not receive raw JSON context. Instead, scored article briefs are indexed into a Foundry-managed vector store and the agent performs semantic search over them, producing cited, grounded output that reduces hallucination.
+
+**Integration point:** `src/agents/foundry_iq.py` + `src/agents/master_synthesizer_agent.py`
+
+```text
+silver_data/*.json (scored briefs)
+        |
+        v
+Foundry IQ: upload_and_index_silver()
+        |
+        v
+Foundry Vector Store (managed, expires after 1 day)
+        |
+        v
+MasterSynthesizerIQ Agent  ← FileSearchTool → vector store
+        |
+        v
+Grounded digest with source citations
+```
+
+The `FileSearchTool` is attached to the synthesis agent via `azure-ai-agents` SDK. No external Azure AI Search subscription is required — Foundry manages the vector store natively.
+
 ## Hackathon Fit
 
 Reasoning Agents:
@@ -56,6 +82,7 @@ Reasoning Agents:
 - Structured outputs: `SilverBrief` currently acts as the scored brief contract and keeps the agent accountable.
 - GenAIOps basics: unit tests, golden eval dataset, schema validation, and cost guards.
 - Practical UX: The final output is a clean, shareable Markdown digest. It can optionally be posted to Teams.
+- **Foundry IQ**: synthesis uses semantic retrieval from a Foundry vector store — grounded, cited answers.
 
 ## Safety And Cost Guards
 
